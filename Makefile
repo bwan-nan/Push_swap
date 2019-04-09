@@ -6,7 +6,7 @@
 #    By: cempassi <cempassi@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/11/26 23:18:40 by cempassi          #+#    #+#              #
-#    Updated: 2019/03/02 04:01:04 by bwan-nan         ###   ########.fr        #
+#    Updated: 2019/04/09 11:12:25 by bwan-nan         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -57,6 +57,9 @@ INCS += conversions.h
 INCS += lists.h 
 
 SRCS += main.c
+SRCS += sort_list.c
+
+ARG = 9 8 7 6 5 4 3 2 1
 
 DSYM = $(NAME).dSYM
 
@@ -69,7 +72,7 @@ vpath  %.h libft/inc/
 all : $(LIB) $(NAME)
 
 run : all
-	./checker
+	./checker $(ARG)
 
 debug : $(LIBDB) $(SRCS)
 	$(MAKE) -C $(LPATH) debug

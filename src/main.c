@@ -6,7 +6,7 @@
 /*   By: bwan-nan <bwan-nan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/02 01:19:16 by bwan-nan          #+#    #+#             */
-/*   Updated: 2019/03/02 04:05:50 by bwan-nan         ###   ########.fr       */
+/*   Updated: 2019/04/09 11:11:37 by bwan-nan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,7 +48,7 @@ int		main(int ac, char **av)
 			ft_printf("%d\n", *(int *)node->content);
 			node = node->next;
 		}
-		ft_lstrevrotate(&list);
+		sort_list(&list);
 		ft_printf("sorted ? %d\n", ft_islist_sorted(list, ascending_oder)); 
 		node = list;
 		while (node)
