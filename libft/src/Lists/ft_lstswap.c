@@ -6,7 +6,7 @@
 /*   By: bwan-nan <bwan-nan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/02 02:48:50 by bwan-nan          #+#    #+#             */
-/*   Updated: 2019/03/02 02:53:50 by bwan-nan         ###   ########.fr       */
+/*   Updated: 2019/04/24 13:53:26 by bwan-nan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,10 @@
 t_list		*ft_lstswap(t_list *a, t_list *b)
 {
 	if (a && b)
+	{
 		a->next = b->next;
 		b->next = a;
-	return (b);
+		return (b);
+	}
+	return (NULL);
 }

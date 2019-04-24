@@ -6,11 +6,12 @@
 #    By: cempassi <cempassi@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/11/26 23:18:40 by cempassi          #+#    #+#              #
-#    Updated: 2019/04/09 11:12:25 by bwan-nan         ###   ########.fr        #
+#    Updated: 2019/04/24 16:18:08 by bwan-nan         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-NAME = checker
+PUSH_SWAP = push_swap
+CHECKER = checker
 LIB = $(LPATH)libft.a
 LIBDB = $(LPATH)libftdb.a
 
@@ -56,12 +57,13 @@ INCS += binary.h
 INCS += conversions.h 
 INCS += lists.h 
 
-SRCS += main.c
+SRCS += push_swap.c
+SRCS += create_list.c
 SRCS += sort_list.c
 
-ARG = 9 8 7 6 5 4 3 2 1
+ARG = 2 3 4 5 6 7 8
 
-DSYM = $(NAME).dSYM
+DSYM = $(PUSH_SWAP).dSYM
 
 OBJS = $(patsubst %.c, $(OPATH)%.o, $(SRCS))
 
@@ -69,16 +71,16 @@ vpath  %.c src/
 vpath  %.h inc/
 vpath  %.h libft/inc/
 
-all : $(LIB) $(NAME)
+all : $(LIB) $(PUSH_SWAP)
 
 run : all
-	./checker $(ARG)
+	./$(PUSH_SWAP) $(ARG)
 
 debug : $(LIBDB) $(SRCS)
 	$(MAKE) -C $(LPATH) debug
-	$(DEBUG) $(DFLAGS) $(CFLAGS) -o $(NAME) $^ 
+	$(DEBUG) $(DFLAGS) $(CFLAGS) -o $(PUSH_SWAP) $^ 
 
-$(NAME): $(LIB) $(OPATH) $(OBJS) $(INCS)
+$(PUSH_SWAP): $(LIB) $(OPATH) $(OBJS) $(INCS)
 	$(CC) -o $@ $< $(OBJS)
 	printf "$(GREEN)$@ is ready.\n$(NC)"
 
@@ -100,13 +102,13 @@ clean :
 	$(CLEANUP) $(OBJS)
 	$(CLEANUP) $(OPATH)
 	$(CLEANUP) $(DSYM)
-	printf "$(RED)All objects removed\n$(NC)"
+	printf "$(RED)All objects from Push_swap folder removed.\n$(NC)"
 
 fclean : clean
 	$(MAKE) -C $(LPATH) fclean
 	$(CLEANUP) $(OPATH)
-	$(CLEANUP) $(NAME)
-	printf "$(RED)$(NAME) deleted\n$(NC)"
+	$(CLEANUP) $(PUSH_SWAP)
+	printf "$(RED)$(PUSH_SWAP) deleted\n$(NC)"
 
 re: fclean all
 

@@ -1,23 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   push_swap.h                                        :+:      :+:    :+:   */
+/*   ft_isnumeric.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: bwan-nan <bwan-nan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/03/02 01:19:38 by bwan-nan          #+#    #+#             */
-/*   Updated: 2019/04/24 17:05:59 by bwan-nan         ###   ########.fr       */
+/*   Created: 2019/04/24 16:14:31 by bwan-nan          #+#    #+#             */
+/*   Updated: 2019/04/24 16:15:39 by bwan-nan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef PUSH_SWAP_H
-# define PUSH_SWAP_H
+#include "libft.h"
 
-# include "libft.h"
+int		ft_isnumeric(char *str)
+{
+	int		i;
 
-t_list					*ft_strsplit_tolist(t_list *list, char *str, int i, char *tmp);
-void					del_node(void *content, size_t size);
-void					sort_list(t_list **source);
-void					print_list(t_list *list);
-
-#endif
+	i = 0;
+	while (str[i])
+	{
+		if (!ft_isdigit(str[i]))
+			return (0);
+		i++;
+	}
+	return (1);
+}
