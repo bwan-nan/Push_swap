@@ -6,7 +6,7 @@
 #    By: cempassi <cempassi@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/11/26 23:18:40 by cempassi          #+#    #+#              #
-#    Updated: 2019/04/24 16:18:08 by bwan-nan         ###   ########.fr        #
+#    Updated: 2019/05/02 17:22:06 by bwan-nan         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -60,6 +60,7 @@ INCS += lists.h
 SRCS += push_swap.c
 SRCS += create_list.c
 SRCS += sort_list.c
+SRCS += instructions.c
 
 ARG = 2 3 4 5 6 7 8
 

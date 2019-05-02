@@ -6,7 +6,7 @@
 #    By: bwan-nan <bwan-nan@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/11/07 17:52:27 by bwan-nan          #+#    #+#              #
-#    Updated: 2019/04/24 16:16:40 by bwan-nan         ###   ########.fr        #
+#    Updated: 2019/05/02 18:28:20 by bwan-nan         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -138,8 +138,10 @@ SRC += ft_lstdelone.c
 SRC += ft_lstiter.c
 SRC += ft_islist_sorted.c
 SRC += ft_lstswap.c
+SRC += ft_lstpush.c
 SRC += ft_lstrotate.c
 SRC += ft_lstrevrotate.c
+SRC += ft_lstcount.c
 
 # --------------------------------------- Output --------------------------------------#
 SRC += ft_putchar.c
