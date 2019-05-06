@@ -6,7 +6,7 @@
 /*   By: bwan-nan <bwan-nan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/01 22:16:55 by bwan-nan          #+#    #+#             */
-/*   Updated: 2019/05/02 18:28:59 by bwan-nan         ###   ########.fr       */
+/*   Updated: 2019/05/04 15:18:03 by bwan-nan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,5 +38,6 @@ void				ft_lstpush(t_list **src, t_list **dest);
 void				ft_lstrotate(t_list **alst);
 void				ft_lstrevrotate(t_list **alst);
 int				ft_lstcount(t_list *lst);
+t_list				*ft_lstcpy(t_list *source, int (*cpy)(void *, void *));
 
 #endif
