@@ -6,7 +6,7 @@
 /*   By: bwan-nan <bwan-nan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/02 01:19:16 by bwan-nan          #+#    #+#             */
-/*   Updated: 2019/05/06 15:13:34 by bwan-nan         ###   ########.fr       */
+/*   Updated: 2019/05/06 18:52:42 by bwan-nan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,9 @@ int		main(int ac, char **av)
 	t_list		*stack_a;
 	t_list		*stack_b;
 	t_prgm		glob;
+	int			i;
 
+	i = 0;
 	stack_a = NULL;
 	stack_b = NULL;
 	if (ac == 2)
@@ -55,5 +57,6 @@ int		main(int ac, char **av)
 	custom_sort(&stack_a, &stack_b, &glob);
 //	print_stacks(stack_a, stack_b);
 	ft_lstdel(&stack_a, del_node);
+	ft_lstdel(&stack_b, del_node);
 	return (0);
 }
