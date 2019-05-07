@@ -6,29 +6,23 @@
 /*   By: bwan-nan <bwan-nan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/24 16:13:09 by bwan-nan          #+#    #+#             */
-/*   Updated: 2019/05/06 14:15:01 by bwan-nan         ###   ########.fr       */
+/*   Updated: 2019/05/07 20:54:54 by bwan-nan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-void	del_node(void *content, size_t size)
+static int	get_word_len(char *str)
 {
-	if (content && size)
-		;
+	int	i;
+
+	i = 0;
+	while (!(ft_iswhitespace(str[i])) && str[i])
+		i++;
+	return (i);
 }
 
-int		get_word_len(char *str)
-{
-	int	len;
-
-	len = 0;
-	while (!(ft_iswhitespace(str[len])) && str[len])
-		len++;
-	return (len);
-}
-
-t_list	*ft_strsplit_tolist(t_list *list, char *str, int i, char *tmp)
+static t_list	*ft_strsplit_tolist(t_list *list, char *str, int i, char *tmp)
 {
 	t_list		*node;
 	int		len;
@@ -56,7 +50,7 @@ t_list	*ft_strsplit_tolist(t_list *list, char *str, int i, char *tmp)
 	return (list);
 }
 
-t_list	*get_numbers_list(t_list *list, int ac, char **av, int num)
+static t_list	*get_numbers_list(t_list *list, int ac, char **av, int num)
 {
 	t_list		*node;
 	int		i;
@@ -73,6 +67,24 @@ t_list	*get_numbers_list(t_list *list, int ac, char **av, int num)
 				return (error_exit(list));
 			ft_lstadd(&list, node);
 		}
+	}
+	return (list);
+}
+
+t_list		*create_list(int ac, char **av)
+{
+	t_list	*list;
+
+	list = NULL;
+	if (ac == 2)
+	{
+		if (!(list = ft_strsplit_tolist(list, av[1], 0, NULL)))
+			return (NULL);
+	}
+	else if (ac > 2)
+	{
+		if (!(list = get_numbers_list(list, ac, av, 0)))
+			return (NULL);
 	}
 	return (list);
 }
