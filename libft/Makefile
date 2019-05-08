@@ -6,7 +6,7 @@
 #    By: bwan-nan <bwan-nan@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/11/07 17:52:27 by bwan-nan          #+#    #+#              #
-#    Updated: 2019/05/04 15:17:20 by bwan-nan         ###   ########.fr        #
+#    Updated: 2019/05/08 19:12:18 by bwan-nan         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -143,6 +143,7 @@ SRC += ft_lstrotate.c
 SRC += ft_lstrevrotate.c
 SRC += ft_lstcount.c
 SRC += ft_lstcpy.c
+SRC += ft_lstncpy.c
 
 # --------------------------------------- Output --------------------------------------#
 SRC += ft_putchar.c

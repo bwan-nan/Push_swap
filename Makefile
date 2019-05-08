@@ -6,7 +6,7 @@
 #    By: cempassi <cempassi@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/11/26 23:18:40 by cempassi          #+#    #+#              #
-#    Updated: 2019/05/07 20:43:07 by bwan-nan         ###   ########.fr        #
+#    Updated: 2019/05/08 20:14:05 by bwan-nan         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -60,10 +60,10 @@ INCS += lists.h
 SRCS += push_swap.c
 SRCS += glob.c
 SRCS += create_list.c
-SRCS += sort_list.c
+SRCS += sort_list2.c
+SRCS += sort_top3.c
 SRCS += instructions.c
 SRCS += get_functions.c
-SRCS += three_numbers.c
 SRCS += aux.c
 SRCS += display.c
 

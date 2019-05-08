@@ -1,32 +1,32 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   push_swap.c                                        :+:      :+:    :+:   */
+/*   ft_lstncpy.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: bwan-nan <bwan-nan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/03/02 01:19:16 by bwan-nan          #+#    #+#             */
-/*   Updated: 2019/05/08 21:05:07 by bwan-nan         ###   ########.fr       */
+/*   Created: 2019/05/08 19:10:52 by bwan-nan          #+#    #+#             */
+/*   Updated: 2019/05/08 19:14:00 by bwan-nan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "push_swap.h"
+#include "libft.h"
 
-//Duplicates not handled as errors yet
-
-int		main(int ac, char **av)
+t_list			*ft_lstncpy(t_list *source, int size, int (*cpy)(void *, void *))
 {
-	t_list		*stack_a;
-	t_list		*stack_b;
-	t_prgm		glob;
+	t_list		*copy;
+	t_list		*node;
 
-	stack_b = NULL;
-	if (!(stack_a = create_list(ac, av)))
-		return (-1);
-	glob_init(stack_a, &glob);
-	custom_sort(&stack_a, &stack_b, &glob, glob.initial_len);
-
-	ft_lstdel(&stack_a, del_node);
-	ft_lstdel(&stack_b, del_node);
-	return (0);
+	copy = NULL;
+	while (source && size--)
+	{
+		if (!(node = ft_lstnew(source->content, sizeof(source->content))))
+			return (NULL);
+		if (cpy)
+			if (cpy(node->content, source->content))
+				return (NULL);
+		ft_lstadd(&copy, node);
+		source = source->next;
+	}
+	return (copy);
 }
