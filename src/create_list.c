@@ -6,7 +6,7 @@
 /*   By: bwan-nan <bwan-nan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/24 16:13:09 by bwan-nan          #+#    #+#             */
-/*   Updated: 2019/05/08 19:23:43 by bwan-nan         ###   ########.fr       */
+/*   Updated: 2019/05/09 15:15:46 by bwan-nan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,7 +71,7 @@ static t_list	*get_numbers_list(t_list *list, int ac, char **av, int num)
 	return (list);
 }
 
-t_list			*create_list(int ac, char **av)
+int			create_stacks(t_stack *a, t_stack *b, int ac, char **av)
 {
 	t_list	*list;
 
@@ -79,12 +79,19 @@ t_list			*create_list(int ac, char **av)
 	if (ac == 2)
 	{
 		if (!(list = ft_strsplit_tolist(list, av[1], 0, NULL)))
-			return (NULL);
+			return (0);
 	}
 	else if (ac > 2)
 	{
 		if (!(list = get_numbers_list(list, ac, av, 0)))
-			return (NULL);
+			return (0);
 	}
-	return (list);
+	ft_lstrev(&list);
+	a->head = list;
+	a->len = ft_lstcount(list);
+	a->stack_name = 'A';
+	b->head = NULL;
+	b->len = 0;
+	b->stack_name = 'B';
+	return (1);
 }

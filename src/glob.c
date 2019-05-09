@@ -6,28 +6,23 @@
 /*   By: bwan-nan <bwan-nan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/05/07 20:33:14 by bwan-nan          #+#    #+#             */
-/*   Updated: 2019/05/08 21:04:50 by bwan-nan         ###   ########.fr       */
+/*   Updated: 2019/05/09 15:30:23 by bwan-nan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-void		update_glob(t_list *a, t_list *b, t_prgm *glob, int nb)
+void		update_glob(t_stack *current, t_prgm *glob, int nb)
 {
-	MAX = STACK == 'A' ? get_list_max(a, nb) : get_list_max(b, nb);
-	MIN = STACK == 'A' ? get_list_min(a, nb) : get_list_min(b, nb);
-	VAL1 = STACK == 'A' ? *(int *)a->content : *(int *)(b)->content;
-	VAL2 = STACK == 'A' ? *(int *)a->next->content : *(int *)b->next->content;
+	MAX = get_list_max(current->head, nb);
+	MIN = get_list_min(current->head, nb);
+	VAL1 = *(int *)current->head->content;
+	VAL2 = *(int *)current->head->next->content;
 	if (nb == 3)
-	{
-		if (STACK == 'A')
-			VAL3 = *(int *)a->next->next->content;
-		else
-			VAL3 = *(int *)b->next->next->content;
-	}
+		VAL3 = *(int *)current->head->next->next->content;
 }
 
-void		glob_init(t_list *a, t_prgm *glob)
+void		glob_init(t_stack *a, t_prgm *glob)
 {
 	MEDIAN = 0;
 	MAX = 0;
@@ -35,7 +30,6 @@ void		glob_init(t_list *a, t_prgm *glob)
 	VAL1 = 0;
 	VAL2 = 0;
 	VAL3 = 0;
-	STACK = 'A';
-	INIT_LEN = ft_lstcount(a);
+	INIT_LEN = a->len;
 }
 

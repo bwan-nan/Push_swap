@@ -6,7 +6,7 @@
 /*   By: bwan-nan <bwan-nan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/02 01:19:16 by bwan-nan          #+#    #+#             */
-/*   Updated: 2019/05/08 21:05:07 by bwan-nan         ###   ########.fr       */
+/*   Updated: 2019/05/09 17:31:25 by bwan-nan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,17 +16,20 @@
 
 int		main(int ac, char **av)
 {
-	t_list		*stack_a;
-	t_list		*stack_b;
+	t_stack		a;
+	t_stack		b;
 	t_prgm		glob;
 
-	stack_b = NULL;
-	if (!(stack_a = create_list(ac, av)))
+	b.head = NULL;
+	if (!(create_stacks(&a, &b, ac, av)))
 		return (-1);
-	glob_init(stack_a, &glob);
-	custom_sort(&stack_a, &stack_b, &glob, glob.initial_len);
+	glob_init(&a, &glob);
+	
+	print_stacks(a.head, b.head);
+	custom_sort(&a, &b, &glob, glob.initial_len);
 
-	ft_lstdel(&stack_a, del_node);
-	ft_lstdel(&stack_b, del_node);
+	print_stacks(a.head, b.head);
+	ft_lstdel(&(a.head), del_node);
+	ft_lstdel(&(a.head), del_node);
 	return (0);
 }

@@ -6,43 +6,41 @@
 /*   By: bwan-nan <bwan-nan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/09 11:05:52 by bwan-nan          #+#    #+#             */
-/*   Updated: 2019/05/08 23:14:42 by bwan-nan         ###   ########.fr       */
+/*   Updated: 2019/05/09 18:04:43 by bwan-nan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-static int	is_sorted(t_list **a, t_list **b, t_prgm *glob, int nb)
+static int	is_sorted(t_stack *current, t_stack *other, int nb)
 {
-	if (STACK == 'A' && ft_islist_sorted(*a, nb, ascending_order))
-	{
+	if (STACK == 'A' && ft_islist_sorted(current->head, nb, ascending_order))
 		return (1);
-	}
-	else if (STACK == 'B' && ft_islist_sorted(*b, nb, descending_order))
+	if (STACK == 'B' && ft_islist_sorted(current->head, nb, descending_order))
 	{
 		while (nb--)
-			push(a, b, 'A');
+			push(current, other);
+		//print_stacks(other->head, current->head);
 		return (1);
 	}
 	return (0);
 }
 
-static int	unsorted_top(t_list *source, t_prgm *glob)
+static int	unsorted_top(t_stack *current, t_prgm *glob, int nb)
 {
 	t_list	*rev;
 	t_list	*sorted_copy;
-	int		total;
 	int		i;
 
-	total = ft_lstcount(source);
-	sorted_copy = get_sorted_copy(source, glob, ft_lstcount(source));
-	ft_lstrev(&sorted_copy);
-	rev = ft_lstcpy(source, copy_values);
+	sorted_copy = get_sorted_copy(current->head, glob, current->len);
+	if (STACK == 'A')
+		ft_lstrev(&sorted_copy);
+	rev = ft_lstcpy(current->head, copy_values);
 	i = 0;
 /*	print_list(rev);
 	ft_putendl("\n\n");
 	print_list(sorted_copy);*/
-	while (rev && sorted_copy)
+	while (rev && sorted_copy && i < nb)
 	{
 		if (*(int *)rev->content != *(int *)sorted_copy->content)
 			break ;
@@ -51,89 +49,83 @@ static int	unsorted_top(t_list *source, t_prgm *glob)
 		rev = rev->next;
 	}
 	ft_lstdel(&rev, del_node);
-	ft_printf("unsorted = %d\n", total - i);
-	return (total - i);
+	ft_lstdel(&sorted_copy, del_node);
+//	ft_printf("unsorted = %d\n", total - i);
+	return (nb - i);
 }
 
-static int	split_list (t_list **a, t_list **b, t_prgm *glob, int nb)
+static int	split_list (t_stack *current, t_stack *other, t_prgm *glob, int nb)
 {
 	t_list	*sorted_copy;
 	int		pushed;
+	int		rotated;
 	int		limit;
 
 	pushed = 0;
+	rotated = 0;
 	limit = nb % 2 ? nb / 2 + 1 : nb / 2;
-	if (STACK == 'A')
-		sorted_copy = get_sorted_copy(*a, glob, nb);
-	else
-		sorted_copy = get_sorted_copy(*b, glob, nb);
+	sorted_copy = get_sorted_copy(current->head, glob, nb);
+	if (STACK == 'B')
+		ft_lstrev(&sorted_copy);
 	print_list(sorted_copy);
+	if (STACK == 'B')
+		print_stacks(other->head, current->head);
+	ft_printf("limit = %d ; nb = %d\n", limit, nb);
 	while (nb > limit)
 	{
-		if ((STACK == 'A' && *(int *)(*a)->content < MEDIAN)
-		|| (STACK == 'B' && *(int *)(*b)->content > MEDIAN))
+		if ((STACK == 'A' && *(int *)current->head->content < MEDIAN)
+		|| (STACK == 'B' && *(int *)current->head->content > MEDIAN))
 		{
-			push(a, b, STACK == 'A' ? 'B' : 'A');
+			push(current, other);
 			pushed++;
+			ft_printf("limit = %d ; nb = %d ; pushed = %d\n", limit, nb, pushed);
+			print_stacks(other->head, current->head);
 			nb--;
 		}
 		else
-			rotate(a, b, STACK);
+		{
+			rotate(current, 1);
+			rotated++;
+		}
 	}
+	while (rotated--)
+		reverse_rotate(current, 1);
 	ft_lstdel(&sorted_copy, del_node);
+	if (STACK == 'A')
+		print_stacks(current->head, other->head);
+	else
+		print_stacks(other->head, current->head);
 	return (pushed);
 }
 
-void		custom_sort(t_list **a, t_list **b, t_prgm *glob, int nb)
+void		custom_sort(t_stack *current, t_stack *other, t_prgm *glob, int nb)
 {
 	int		ret;
 	int		pushed;
 
-	if (is_sorted(a, b, glob, nb))
-		return ;
-	if ((ret = unsorted_top(*a, glob)) <= 3)
+	if (is_sorted(current, other, nb))
 	{
-		if (STACK == 'B' && ret == 0 && nb <= 3)
-			sort_top3(a, b, glob, nb);
-		else if (STACK == 'B' && nb > 3 && ret == 0)
-		{
-			pushed = split_list(a, b, glob, nb);
-			if (STACK == 'A')
-			{
-				ft_printf("rest = %d\n", nb - pushed);
-				custom_sort(a, b, glob, nb - pushed);
-				STACK = 'B';
-				custom_sort(a, b, glob, pushed);
-			}
-			else
-			{
-				custom_sort(a, b, glob, pushed);
-				STACK = 'A';
-				ft_printf("nb - pushed = %d\n", nb -pushed);
-				custom_sort(a, b, glob, nb - pushed);
-			}
-		}
-		else
-			sort_top3(a, b, glob, ret); 
+		ft_printf("%c is sorted\n", STACK);
+		return ;
+	}
+	if ((ret = unsorted_top(current, glob, nb)) <= 3)
+	{
+			ft_printf("unsorted top = %d from %c ; nb = %d\n", ret, STACK, nb);
+			sort_top3(current, other, glob, nb); 
 	}
 	else
 	{
-		print_stacks(*a, *b);
-		pushed = split_list(a, b, glob, nb);
+		pushed = split_list(current, other, glob, nb);
+		ft_printf("pushed = %d from %c\n", pushed, STACK);
 		if (STACK == 'A')
 		{
-			ft_printf("rest = %d\n", nb - pushed);
-			custom_sort(a, b, glob, nb - pushed);
-			STACK = 'B';
-			custom_sort(a, b, glob, pushed);
+			custom_sort(current, other, glob, nb - pushed);
+			custom_sort(other, current, glob, pushed);
 		}
 		else
 		{
-			custom_sort(a, b, glob, pushed);
-			STACK = 'A';
-			ft_printf("nb - pushed = %d\n", nb -pushed);
-			custom_sort(a, b, glob, nb - pushed);
+			custom_sort(other, current, glob, pushed);
+			custom_sort(current, other, glob, nb - pushed);
 		}
 	}
-	print_stacks(*a, *b);
 }

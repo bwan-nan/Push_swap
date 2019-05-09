@@ -6,97 +6,132 @@
 /*   By: bwan-nan <bwan-nan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/05/08 20:13:42 by bwan-nan          #+#    #+#             */
-/*   Updated: 2019/05/08 23:20:28 by bwan-nan         ###   ########.fr       */
+/*   Updated: 2019/05/09 17:55:04 by bwan-nan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-static void	sort_top3_a(t_list **a, t_list **b, t_prgm *glob)
+static void		sort_b(t_stack *a, t_stack *b, t_prgm *glob)
+{
+	if (VAL1 == MAX)
+	{
+		push(b, a);
+		swap(b, 1);
+		push(a, b);
+	}
+	else if (VAL1 == MIN)
+	{
+		swap(b, 1);
+		push(b, a);
+		swap(b, 1);
+		push(a, b);
+		if (VAL2 != MAX)
+			swap(b, 1);
+	}
+	else
+	{
+		if (VAL2 == MIN)
+		{
+			push(b, a);
+			swap(b, 1);
+			push(a, b);
+			swap(b, 1);
+		}
+		else
+			swap(b, 1);
+	}
+}
+
+static void		sort_a(t_stack *a, t_stack *b, t_prgm *glob)
+{
+	if (VAL1 == MAX)
+	{
+		swap(a, 1);
+		push(a, b);
+		swap(a, 1);
+		push(b, a);
+		if (VAL2 != MIN)
+			swap(a, 1);
+	}
+	else if (VAL1 == MIN)
+	{
+		push(a, b);
+		swap(a, 1);
+		push(b, a);
+	}
+	else
+	{
+		if (VAL2 == MIN)
+			swap(a, 1);
+		else
+		{
+			push(a, b);
+			swap(a, 1);
+			push(b, a);
+			swap(a, 1);
+		}
+	}
+}
+
+static void		simple_sort_a(t_stack *a, t_prgm *glob)
 {
 	if (VAL1 == MAX)
 	{
 		if (VAL2 == MIN)
-			rotate(a, b, STACK);
+			rotate(a, 1);
 		else
 		{
-			swap(a, b, STACK);
-			reverse_rotate(a, b, STACK);
+			swap(a, 1);
+			reverse_rotate(a, 1);
 		}
 	}
 	else if (VAL1 != MIN && VAL1 != MAX)
-		VAL2 == MIN ? swap(a, b, STACK) : reverse_rotate(a, b, STACK);
+		VAL2 == MIN ? swap(a, 1) : reverse_rotate(a, 1);
 	else
 	{
-		reverse_rotate(a, b, STACK);
-		swap(a, b, STACK);
+		reverse_rotate(a, 1);
+		swap(a, 1);
 	}
 }
 
-static void	sort_top3_b(t_list **a, t_list **b, t_prgm *glob)
+static void		simple_sort_b(t_stack *b, t_prgm *glob)
 {
-	if (VAL1 == MAX && VAL2 == MIN)
+	if (VAL1 == MAX)
 	{
-			reverse_rotate(a, b, STACK);
-			swap(a, b, STACK);
+		reverse_rotate(b, 1);
+		swap(b, 1);
 	}
-	else if (VAL1 != MIN && VAL1 != MAX)
+	else if (VAL1 == MIN)
 	{
-		if (VAL2 == MIN)
-		{
-			rotate(a, b, 'B');
-			rotate(a, b, 'B');
-			push(a, b, 'A');
-			reverse_rotate(a, b, 'B');
-			reverse_rotate(a, b, 'B');
-			push(a, b, 'A');
-			push(a, b, 'A');
-		}
+		if (VAL2 == MAX)
+			rotate(b, 1);
 		else
 		{
-			rotate(a, b, 'B');
-			rotate(a, b, 'B');
-			push(a, b, 'A');
-			reverse_rotate(a, b, 'B');
-			push(a, b, 'A');
-			reverse_rotate(a, b, 'B');
-			push(a, b, 'A');
+			rotate(b, 1);
+			swap(b, 1);
 		}
 	}
 	else
 	{
 		if (VAL2 == MAX)
-			rotate(a, b, STACK);
+			swap(b, 1);
 		else
-		{
-			swap(a, b, STACK);
-			reverse_rotate(a, b, STACK);
-		}
+			reverse_rotate(b, 1);
 	}
 }
 
-void		sort_top3(t_list **a, t_list **b, t_prgm *glob, int nb)
+void			sort_top3(t_stack *current, t_stack *other, t_prgm *glob, int nb)
 {
-//	if ((STACK == 'A' && ft_islist_sorted(*a, nb, ascending_order))
-//	|| (STACK == 'B' && ft_islist_sorted(*b, nb, descending_order)))
-//		return ;
-	update_glob(*a, *b, glob, nb);
-	ft_printf("NB = %d ; STACK = %c ;\nVAL1 = %d ; VAL2 = %d, VAL3 = %d\n", nb, STACK,
-			VAL1, VAL2, VAL3);
-	print_stacks(*a, *b);
-	if (nb == 2)
-	{
-		if (STACK == 'A' && VAL1 > VAL2)
-		   swap(a, b, STACK);	
-		else if (STACK == 'B')
-		{
-			if (VAL1 < VAL2)
-				swap(a, b, STACK);
-			push(a, b, 'A');
-			push(a, b, 'A');
-		}
-	}
+	update_glob(current, glob, nb);
+	if (nb == current->len && current->len <= 3)
+		STACK == 'A' ? simple_sort_a(current, glob) : simple_sort_b(current, glob);
 	else
-		STACK == 'A' ? sort_top3_a(a, b, glob) : sort_top3_b(a, b, glob);
-}
-
+	{
+		ft_putendl("OK");
+		STACK == 'A' ? sort_a(current, other, glob) : sort_b(other, current, glob);
+	}
+	if (STACK == 'B')
+		while (nb--)
+			push(current, other);
+}	
