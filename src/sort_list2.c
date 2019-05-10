@@ -6,7 +6,7 @@
 /*   By: bwan-nan <bwan-nan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/09 11:05:52 by bwan-nan          #+#    #+#             */
-/*   Updated: 2019/05/10 16:34:35 by bwan-nan         ###   ########.fr       */
+/*   Updated: 2019/05/10 21:00:28 by bwan-nan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,7 +71,10 @@ static int	split_list (t_stack *current, t_stack *other, t_prgm *glob, int nb)
 	int		rotated;
 	int		limit;
 	int		test;
+	int		tmp;
 
+	SPLIT++;
+	tmp = current->len;
 	pushed = 0;
 	rotated = 0;
 	limit = nb % 2 ? nb / 2 + 1 : nb / 2;
@@ -85,6 +88,7 @@ static int	split_list (t_stack *current, t_stack *other, t_prgm *glob, int nb)
 		|| (STACK == 'B' && ((nb + pushed) % 2 ? *(int *)VALUE > MEDIAN : *(int *)VALUE >= MEDIAN)))
 		{
 			push(current, other);
+			OPS++;
 			pushed++;
 			nb--;
 			//ft_printf("nb = %d, limit = %d, pushed = %d, MEDIAN = %d\n", nb, limit, pushed, MEDIAN);
@@ -96,11 +100,19 @@ static int	split_list (t_stack *current, t_stack *other, t_prgm *glob, int nb)
 		else
 		{
 			rotate(current, 1);
+			OPS++;
 			rotated++;
 		}
 	}
-	while (rotated--)
-		reverse_rotate(current, 1);
+	if ((pushed + nb != INIT_LEN && STACK == 'A')
+	|| (pushed + nb != tmp && STACK == 'B'))
+	{
+		while (rotated--)
+		{
+			reverse_rotate(current, 1);
+			OPS++;
+		}
+	}
 	ft_lstdel(&sorted_copy, del_node);
 	return (pushed);
 }
@@ -111,7 +123,7 @@ void		custom_sort(t_stack *current, t_stack *other, t_prgm *glob, int nb)
 
 	if (is_sorted(current, other, nb))
 	{
-/*		ft_printf("sorted  = 1 :  STACK = %c, nb = %d\n", STACK, nb);
+	/*	ft_printf("sorted  = 1 :  STACK = %c, nb = %d\n", STACK, nb);
 		if (STACK == 'A')
 			print_stacks(current->head, other->head);
 		else

@@ -6,7 +6,7 @@
 /*   By: bwan-nan <bwan-nan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/29 18:00:38 by bwan-nan          #+#    #+#             */
-/*   Updated: 2019/05/10 16:41:43 by bwan-nan         ###   ########.fr       */
+/*   Updated: 2019/05/10 18:38:31 by bwan-nan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ void	push(t_stack *src, t_stack *dest)
 	ft_lstpush(&src->head, &dest->head);
 	src->len--;
 	dest->len++;
-	ft_printf("p%c\n", ft_tolower(src->stack_name));
+	ft_printf("p%c\n", ft_tolower(dest->stack_name));
 }
 
 void	swap(t_stack *current, int verbose)

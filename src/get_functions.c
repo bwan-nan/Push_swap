@@ -6,7 +6,7 @@
 /*   By: bwan-nan <bwan-nan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/05/06 13:59:30 by bwan-nan          #+#    #+#             */
-/*   Updated: 2019/05/08 20:51:25 by bwan-nan         ###   ########.fr       */
+/*   Updated: 2019/05/10 19:04:29 by bwan-nan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,14 +44,13 @@ int			get_median_value(t_list *source)
 
 int			get_list_max(t_list *source, int size)
 {
-	int	max;
+	int		max;
 
 	max = *(int *)source->content;
-	while (source && size)
+	while (source && size--)
 	{
 		if (*(int *)source->content > max)
 			max = *(int *)source->content;
-		size--;
 		source = source->next;
 	}
 	return (max);
@@ -59,14 +58,13 @@ int			get_list_max(t_list *source, int size)
 
 int			get_list_min(t_list *source, int size)
 {
-	int	min;
+	int		min;
 
 	min = *(int *)source->content;
-	while (source && size)
+	while (source && size--)
 	{
 		if (*(int *)source->content < min)
 			min = *(int *)source->content;
-		size--;
 		source = source->next;
 	}
 	return (min);
