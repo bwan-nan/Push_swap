@@ -6,7 +6,7 @@
 /*   By: bwan-nan <bwan-nan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/02 01:19:38 by bwan-nan          #+#    #+#             */
-/*   Updated: 2019/05/09 15:31:48 by bwan-nan         ###   ########.fr       */
+/*   Updated: 2019/05/10 14:27:37 by bwan-nan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,8 +23,11 @@
 # define VAL3			glob->val3
 # define PUSHED			glob->pushed
 # define INIT_LEN		glob->initial_len
+# define UNSORTED		glob->unsorted
 
 # define STACK			current->stack_name
+
+# define VALUE			current->head->content
 
 typedef struct			s_prgm
 {
@@ -36,6 +39,7 @@ typedef struct			s_prgm
 	int					val3;
 	int					pushed;
 	int					initial_len;
+	int					unsorted;
 }						t_prgm;
 
 typedef struct			s_stack

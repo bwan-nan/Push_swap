@@ -6,7 +6,7 @@
 /*   By: bwan-nan <bwan-nan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/02 01:19:16 by bwan-nan          #+#    #+#             */
-/*   Updated: 2019/05/09 17:31:25 by bwan-nan         ###   ########.fr       */
+/*   Updated: 2019/05/10 16:36:13 by bwan-nan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,10 +25,10 @@ int		main(int ac, char **av)
 		return (-1);
 	glob_init(&a, &glob);
 	
-	print_stacks(a.head, b.head);
+//	print_stacks(a.head, b.head);
 	custom_sort(&a, &b, &glob, glob.initial_len);
 
-	print_stacks(a.head, b.head);
+//	print_stacks(a.head, b.head);
 	ft_lstdel(&(a.head), del_node);
 	ft_lstdel(&(a.head), del_node);
 	return (0);

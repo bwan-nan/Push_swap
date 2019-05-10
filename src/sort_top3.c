@@ -6,7 +6,7 @@
 /*   By: bwan-nan <bwan-nan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/05/08 20:13:42 by bwan-nan          #+#    #+#             */
-/*   Updated: 2019/05/09 17:55:04 by bwan-nan         ###   ########.fr       */
+/*   Updated: 2019/05/10 16:35:08 by bwan-nan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -126,12 +126,17 @@ void			sort_top3(t_stack *current, t_stack *other, t_prgm *glob, int nb)
 	update_glob(current, glob, nb);
 	if (nb == current->len && current->len <= 3)
 		STACK == 'A' ? simple_sort_a(current, glob) : simple_sort_b(current, glob);
+	else if (UNSORTED == 2)
+		swap(current, 1);
 	else
 	{
-		ft_putendl("OK");
 		STACK == 'A' ? sort_a(current, other, glob) : sort_b(other, current, glob);
+//	STACK == 'A' ? print_stacks(current->head, other->head) : print_stacks(other->head, current->head);
 	}
 	if (STACK == 'B')
+	{
 		while (nb--)
 			push(current, other);
+//	STACK == 'A' ? print_stacks(current->head, other->head) : print_stacks(other->head, current->head);
+	}
 }	
