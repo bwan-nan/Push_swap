@@ -6,11 +6,22 @@
 /*   By: bwan-nan <bwan-nan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/05/07 20:33:14 by bwan-nan          #+#    #+#             */
-/*   Updated: 2019/05/10 20:19:07 by bwan-nan         ###   ########.fr       */
+/*   Updated: 2019/05/13 18:40:36 by bwan-nan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
+
+void		stacks_init(t_stack *a, t_stack *b, t_list *list)
+{
+	ft_lstrev(&list);
+	a->head = list;
+	a->len = ft_lstcount(list);
+	a->stack_name = 'A';
+	b->head = NULL;
+	b->len = 0;
+	b->stack_name = 'B';
+}
 
 void		update_glob(t_stack *current, t_prgm *glob, int nb)
 {

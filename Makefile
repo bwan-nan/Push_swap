@@ -6,14 +6,13 @@
 #    By: cempassi <cempassi@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/11/26 23:18:40 by cempassi          #+#    #+#              #
-#    Updated: 2019/05/09 15:06:29 by bwan-nan         ###   ########.fr        #
+#    Updated: 2019/05/13 19:09:30 by bwan-nan         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 PUSH_SWAP = push_swap
 CHECKER = checker
 LIB = $(LPATH)libft.a
-LIBDB = $(LPATH)libftdb.a
 
 # Reset
 NC=\033[0m
@@ -59,35 +58,58 @@ INCS += lists.h
 
 SRCS += push_swap.c
 SRCS += glob.c
-SRCS += create_list.c
-SRCS += sort_list2.c
+SRCS += create_stacks.c
+SRCS += sort_list.c
 SRCS += sort_top3.c
 SRCS += instructions.c
 SRCS += get_functions.c
 SRCS += aux.c
 SRCS += display.c
+SRCS += checker.c
+SRCS += exec.c
 
-ARG = 2 3 4 5 6 7 8
+SRCS_CH += checker.c
+SRCS_CH += create_stacks.c
+SRCS_CH += get_functions.c
+SRCS_CH += glob.c
+SRCS_CH += exec.c
+SRCS_CH += instructions.c
+SRCS_CH += aux.c
+SRCS_CH += display.c
+
+SRCS_PS += push_swap.c
+SRCS_PS += glob.c
+SRCS_PS += create_stacks.c
+SRCS_PS += sort_list.c
+SRCS_PS += sort_top3.c
+SRCS_PS += instructions.c
+SRCS_PS += get_functions.c
+SRCS_PS += aux.c
+SRCS_PS += display.c
+
+ARG = 8 9 5 3 2 -1 6
 
 DSYM = $(PUSH_SWAP).dSYM
 
 OBJS = $(patsubst %.c, $(OPATH)%.o, $(SRCS))
+OBJS_CH = $(patsubst %.c, $(OPATH)%.o, $(SRCS_CH))
+OBJS_PS = $(patsubst %.c, $(OPATH)%.o, $(SRCS_PS))
 
 vpath  %.c src/
 vpath  %.h inc/
 vpath  %.h libft/inc/
 
-all : $(LIB) $(PUSH_SWAP)
+all : $(LIB) $(PUSH_SWAP) $(CHECKER)
 
 run : all
 	./$(PUSH_SWAP) $(ARG)
 
-debug : $(LIBDB) $(SRCS)
-	$(MAKE) -C $(LPATH) debug
-	$(DEBUG) $(DFLAGS) $(CFLAGS) -o $(PUSH_SWAP) $^ 
+$(PUSH_SWAP): $(LIB) $(OPATH) $(OBJS_PS) $(INCS)
+	$(CC) -o $@ $< $(OBJS_PS)
+	printf "$(GREEN)$@ is ready.\n$(NC)"
 
-$(PUSH_SWAP): $(LIB) $(OPATH) $(OBJS) $(INCS)
-	$(CC) -o $@ $< $(OBJS)
+$(CHECKER): $(LIB) $(OPATH) $(OBJS_CH) $(INCS)
+	$(CC) -o $@ $< $(OBJS_CH)
 	printf "$(GREEN)$@ is ready.\n$(NC)"
 
 $(OBJS) : $(OPATH)%.o : %.c $(INCS)
@@ -114,7 +136,9 @@ fclean : clean
 	$(MAKE) -C $(LPATH) fclean
 	$(CLEANUP) $(OPATH)
 	$(CLEANUP) $(PUSH_SWAP)
+	$(CLEANUP) $(CHECKER)
 	printf "$(RED)$(PUSH_SWAP) deleted\n$(NC)"
+	printf "$(RED)$(CHECKER) deleted\n$(NC)"
 
 re: fclean all
 

@@ -6,7 +6,7 @@
 /*   By: bwan-nan <bwan-nan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/01 22:11:22 by bwan-nan          #+#    #+#             */
-/*   Updated: 2019/04/24 16:16:18 by bwan-nan         ###   ########.fr       */
+/*   Updated: 2019/05/13 18:30:34 by bwan-nan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,7 @@ int					ft_isalpha(int c);
 int					ft_isascii(int c);
 int					ft_isdigit(int c);
 int					ft_isnumeric(char *str);
+int					ft_isinteger(char *str);
 int					ft_islower(int c);
 int					ft_isprint(int c);
 int					ft_isupper(int c);

@@ -6,7 +6,7 @@
 /*   By: bwan-nan <bwan-nan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/05/07 20:39:01 by bwan-nan          #+#    #+#             */
-/*   Updated: 2019/05/09 17:23:32 by bwan-nan         ###   ########.fr       */
+/*   Updated: 2019/05/13 19:09:48 by bwan-nan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,4 +44,3 @@ t_list	*error_exit(t_list *list)
 	ft_lstdel(&list, del_node);
 	return (NULL);
 }
-

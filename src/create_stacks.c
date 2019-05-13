@@ -1,16 +1,38 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   create_list.c                                      :+:      :+:    :+:   */
+/*   create_stacks.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: bwan-nan <bwan-nan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/04/24 16:13:09 by bwan-nan          #+#    #+#             */
-/*   Updated: 2019/05/09 15:15:46 by bwan-nan         ###   ########.fr       */
+/*   Created: 2019/05/13 18:53:02 by bwan-nan          #+#    #+#             */
+/*   Updated: 2019/05/13 18:53:04 by bwan-nan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
+
+static int		check_duplicates(t_list *list)
+{
+	t_list	*cpy;
+	t_list	*elem;
+
+	if (!(cpy = ft_lstcpy(list, copy_values)))
+		return (0);
+	ft_lst_mergesort(&cpy, ascending_order);
+	elem = cpy;
+	while (elem->next)
+	{
+		if (*(int *)elem->content == *(int *)elem->next->content)
+		{
+			ft_lstdel(&cpy, del_node);
+			return (1);
+		}
+		elem = elem->next;
+	}
+	ft_lstdel(&cpy, del_node);
+	return (0);
+}
 
 static int		get_word_len(char *str)
 {
@@ -33,7 +55,7 @@ static t_list	*ft_strsplit_tolist(t_list *list, char *str, int i, char *tmp)
 		len = get_word_len(str + i);
 		if (len && (tmp = ft_strsub(str, i, len)))
 		{
-			if (!ft_isnumeric(tmp))
+			if (!ft_isinteger(tmp))
 			{
 				ft_strdel(&tmp);
 				return (error_exit(list));
@@ -58,7 +80,7 @@ static t_list	*get_numbers_list(t_list *list, int ac, char **av, int num)
 	i = 0;
 	while (++i < ac) 
 	{
-		if (!(ft_isnumeric(av[i])))
+		if (!(ft_isinteger(av[i])))
 			return (error_exit(list));
 		else
 		{
@@ -86,12 +108,12 @@ int			create_stacks(t_stack *a, t_stack *b, int ac, char **av)
 		if (!(list = get_numbers_list(list, ac, av, 0)))
 			return (0);
 	}
-	ft_lstrev(&list);
-	a->head = list;
-	a->len = ft_lstcount(list);
-	a->stack_name = 'A';
-	b->head = NULL;
-	b->len = 0;
-	b->stack_name = 'B';
+	if (check_duplicates(list))
+	{
+		ft_lstdel(&list, del_node);
+		ft_putendl("Error");
+		return (0);
+	}
+	stacks_init(a, b, list);
 	return (1);
 }

@@ -6,7 +6,7 @@
 /*   By: bwan-nan <bwan-nan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/02 01:19:38 by bwan-nan          #+#    #+#             */
-/*   Updated: 2019/05/10 20:16:33 by bwan-nan         ###   ########.fr       */
+/*   Updated: 2019/05/13 18:41:41 by bwan-nan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,6 +67,7 @@ typedef struct			s_stack
 
 void					del_node(void *content, size_t size);
 
+void					stacks_init(t_stack *a, t_stack *b, t_list *list);
 void					glob_init(t_stack *a, t_prgm *glob);
 void					update_glob(t_stack *current, t_prgm *glob, int nb);
 
@@ -90,12 +91,14 @@ int						get_list_min(t_list *source, int size);
 
 t_list					*error_exit(t_list *list);
 
-void					push(t_stack *src, t_stack *dest);
+void					push(t_stack *src, t_stack *dest, int verbose);
 void					swap(t_stack *current, int verbose);
-void					sswap(t_stack *a, t_stack *b);
+void					sswap(t_stack *a, t_stack *b, int verbose);
 void					rotate(t_stack *current, int verbose);
-void					rrotate(t_stack *a, t_stack *b);
+void					rrotate(t_stack *a, t_stack *b, int verbose);
 void					reverse_rotate(t_stack *current, int verbose);
-void					rreverse_rotate(t_stack *a, t_stack *b);
+void					rreverse_rotate(t_stack *a, t_stack *b, int verbose);
+
+int						exec(t_stack *a, t_stack *b, char *line);
 
 #endif

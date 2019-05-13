@@ -1,43 +1,42 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   push_swap.c                                        :+:      :+:    :+:   */
+/*   checker.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: bwan-nan <bwan-nan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/03/02 01:19:16 by bwan-nan          #+#    #+#             */
-/*   Updated: 2019/05/13 17:11:10 by bwan-nan         ###   ########.fr       */
+/*   Created: 2019/05/13 15:02:26 by bwan-nan          #+#    #+#             */
+/*   Updated: 2019/05/13 17:12:42 by bwan-nan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-//Duplicates not handled as errors yet
-// Verify if > INT_MAX || INT_MIN
-
 int		main(int ac, char **av)
 {
 	t_stack		a;
 	t_stack		b;
-	t_prgm		glob;
-
+	char		*line;
+	int			ret;
+	
 	b.head = NULL;
 	if (!(create_stacks(&a, &b, ac, av)))
+	{
+		ft_putendl("Error");
 		return (-1);
-	glob_init(&a, &glob);
-	
-//	print_stacks(a.head, b.head);
-	custom_sort(&a, &b, &glob, glob.initial_len);
-
-
+	}
+	while (get_next_line(0, &line) && (ret = exec(&a, &b, line)) != 1)
+	{
+		if (ret == -1)
+		{
+			ft_putendl("Error");
+			return (-1);
+		}
+		ft_strdel(&line);
+	}
 	//print_stacks(a.head, b.head);
-/*	if (ft_islist_sorted(a.head, a.len, ascending_order))
-		ft_putendl("Sorted");
-	else
-		ft_putendl("Not sorted");*/
-//	ft_printf("Nombre de passages dans sort_a : %d ; Total OP_A = %d\nNombre de passages dans sort_b : %d ; Total OP_B = %d\nNombre de passages dans split : %d ; Total OP_S = %d\n",
-//			glob.sort_a, glob.op_a, glob.sort_b, glob.op_b, glob.split, glob.op_s);
 	ft_lstdel(&(a.head), del_node);
 	ft_lstdel(&(b.head), del_node);
-	return (0);
+	ret == 0 ? ft_putendl("KO") : ft_putendl("OK");
+	return (ret == 0 ? 0 : 1);
 }

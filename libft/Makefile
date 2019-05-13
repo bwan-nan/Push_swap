@@ -6,7 +6,7 @@
 #    By: bwan-nan <bwan-nan@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/11/07 17:52:27 by bwan-nan          #+#    #+#              #
-#    Updated: 2019/05/08 19:12:18 by bwan-nan         ###   ########.fr        #
+#    Updated: 2019/05/13 18:30:59 by bwan-nan         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -78,6 +78,7 @@ SRC += ft_isalpha.c
 SRC += ft_isascii.c
 SRC += ft_isdigit.c
 SRC += ft_isnumeric.c
+SRC += ft_isinteger.c
 SRC += ft_islower.c
 SRC += ft_isprint.c
 SRC += ft_isupper.c
