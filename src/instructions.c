@@ -6,7 +6,7 @@
 /*   By: bwan-nan <bwan-nan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/29 18:00:38 by bwan-nan          #+#    #+#             */
-/*   Updated: 2019/05/13 17:04:27 by bwan-nan         ###   ########.fr       */
+/*   Updated: 2019/05/13 19:48:13 by bwan-nan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,8 @@ void	push(t_stack *src, t_stack *dest, int verbose)
 
 void	swap(t_stack *current, int verbose)
 {
-	current->head = ft_lstswap(current->head, current->head->next);
+	if (ft_lstcount(current->head) >= 2)
+		current->head = ft_lstswap(current->head, current->head->next);
 	if (verbose)
 		ft_printf("s%c\n", ft_tolower(STACK));
 }
@@ -38,7 +39,8 @@ void	sswap(t_stack *a, t_stack *b, int verbose)
 
 void	rotate(t_stack *current, int verbose)
 {
-	ft_lstrotate(&current->head);
+	if (ft_lstcount(current->head) >= 2)
+		ft_lstrotate(&current->head);
 	if (verbose)
 		ft_printf("r%c\n", ft_tolower(STACK));
 }
@@ -53,7 +55,8 @@ void	rrotate(t_stack *a, t_stack *b, int verbose)
 
 void	reverse_rotate(t_stack *current, int verbose)
 {
-	ft_lstrevrotate(&current->head);
+	if (ft_lstcount(current->head) >= 2)
+		ft_lstrevrotate(&current->head);
 	if (verbose)
 		ft_printf("rr%c\n", ft_tolower(STACK));
 }

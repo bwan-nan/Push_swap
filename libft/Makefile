@@ -6,7 +6,7 @@
 #    By: bwan-nan <bwan-nan@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/11/07 17:52:27 by bwan-nan          #+#    #+#              #
-#    Updated: 2019/05/13 18:30:59 by bwan-nan         ###   ########.fr        #
+#    Updated: 2019/05/13 19:35:43 by bwan-nan         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -200,7 +200,7 @@ clean:
 	$(CLEANUP) $(OBJS)
 	$(CLEANUP) $(OPATH)
 	$(CLEANUP) $(EXEC)
-	printf "$(RED)All objects removed\n$(NC)"
+	#printf "$(RED)All objects removed from Libft\n$(NC)"
 
 fclean: clean
 	$(CLEANUP) $(NAME)

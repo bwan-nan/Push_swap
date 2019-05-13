@@ -6,7 +6,7 @@
 #    By: cempassi <cempassi@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/11/26 23:18:40 by cempassi          #+#    #+#              #
-#    Updated: 2019/05/13 19:09:30 by bwan-nan         ###   ########.fr        #
+#    Updated: 2019/05/13 19:35:57 by bwan-nan         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -130,7 +130,8 @@ clean :
 	$(CLEANUP) $(OBJS)
 	$(CLEANUP) $(OPATH)
 	$(CLEANUP) $(DSYM)
-	printf "$(RED)All objects from Push_swap folder removed.\n$(NC)"
+	printf "$(RED)All objects removed from Libft\n$(NC)"
+	printf "$(RED)All objects removed from Push_swap\n$(NC)"
 
 fclean : clean
 	$(MAKE) -C $(LPATH) fclean
