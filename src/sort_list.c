@@ -6,7 +6,7 @@
 /*   By: bwan-nan <bwan-nan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/09 11:05:52 by bwan-nan          #+#    #+#             */
-/*   Updated: 2019/05/14 15:49:05 by bwan-nan         ###   ########.fr       */
+/*   Updated: 2019/05/14 20:13:51 by bwan-nan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,7 +68,6 @@ static int	split_list (t_stack *current, t_stack *other, t_prgm *glob, int nb)
 	int		pushed;
 	int		rotated;
 	int		limit;
-	int		test;
 	int		tmp;
 
 	tmp = current->len;
@@ -80,7 +79,6 @@ static int	split_list (t_stack *current, t_stack *other, t_prgm *glob, int nb)
 		ft_lstrev(&sorted_copy);
 	while (nb > limit)
 	{
-		test = (nb + pushed) % 2 ? *(int *)VALUE < MEDIAN : *(int *)VALUE <= MEDIAN;
 		if ((STACK == 'A' && *(int *)VALUE < MEDIAN)
 		|| (STACK == 'B' && ((nb + pushed) % 2 ? *(int *)VALUE > MEDIAN : *(int *)VALUE >= MEDIAN)))
 		{
@@ -94,8 +92,7 @@ static int	split_list (t_stack *current, t_stack *other, t_prgm *glob, int nb)
 			rotated++;
 		}
 	}
-	if ((pushed + nb != INIT_LEN && STACK == 'A')
-	|| (pushed + nb != tmp && STACK == 'B'))
+	if (pushed + nb != tmp)
 	{
 		while (rotated--)
 			reverse_rotate(current, 1);
