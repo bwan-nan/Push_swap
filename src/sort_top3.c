@@ -6,7 +6,7 @@
 /*   By: bwan-nan <bwan-nan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/05/08 20:13:42 by bwan-nan          #+#    #+#             */
-/*   Updated: 2019/05/13 17:11:30 by bwan-nan         ###   ########.fr       */
+/*   Updated: 2019/05/14 15:49:45 by bwan-nan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,16 +14,12 @@
 
 static void		sort_b(t_stack *a, t_stack *b, t_prgm *glob)
 {
-//	ft_printf("VAL1 = %d, VAL2 = %d, VAL3 = %d, MIN = %d, MAX = %d\n",
-//			VAL1, VAL2, VAL3, MIN, MAX);
-	SB++;
 	if (VAL1 == MAX)
 	{
 		push(b, a, 1);
 		swap(b, 1);
 		push(b, a, 1);
 		push(b, a, 1);
-		OPB += 4;
 	}
 	else if (VAL1 == MIN)
 	{
@@ -34,7 +30,6 @@ static void		sort_b(t_stack *a, t_stack *b, t_prgm *glob)
 		if (VAL2 != MAX)
 			swap(a, 1);
 		push(b, a, 1);
-		OPB += VAL2 != MAX ? 6 : 5;
 	}
 	else
 	{
@@ -45,7 +40,6 @@ static void		sort_b(t_stack *a, t_stack *b, t_prgm *glob)
 			push(b, a, 1);
 			swap(a, 1);
 			push(b, a, 1);
-			OPB += 5;
 		}
 		else
 		{
@@ -53,14 +47,12 @@ static void		sort_b(t_stack *a, t_stack *b, t_prgm *glob)
 			push(b, a, 1);
 			push(b, a, 1);
 			push(b, a, 1);
-			OPB += 4;
 		}
 	}
 }
 
 static void		sort_a(t_stack *a, t_stack *b, t_prgm *glob)
 {
-	SA++;
 	if (VAL1 == MAX)
 	{
 		swap(a, 1);
@@ -69,14 +61,12 @@ static void		sort_a(t_stack *a, t_stack *b, t_prgm *glob)
 		push(b, a, 1);
 		if (VAL2 != MIN)
 			swap(a, 1);
-		OPA += VAL2 !=MIN ? 5 : 4;
 	}
 	else if (VAL1 == MIN)
 	{
 		push(a, b, 1);
 		swap(a, 1);
 		push(b, a, 1);
-		OPA += 3;
 	}
 	else
 	{
@@ -89,7 +79,6 @@ static void		sort_a(t_stack *a, t_stack *b, t_prgm *glob)
 			push(b, a, 1);
 			swap(a, 1);
 		}
-		OPA += VAL2 == MIN ? 1 : 4;
 	}
 }
 
@@ -142,7 +131,6 @@ static void		simple_sort_b(t_stack *b, t_prgm *glob)
 
 void			sort_top3(t_stack *current, t_stack *other, t_prgm *glob, int nb)
 {
-//	ft_putstr("\033[0;31m");
 	update_glob(current, glob, nb);
 
 	if (UNSORTED == 2)
@@ -170,5 +158,4 @@ void			sort_top3(t_stack *current, t_stack *other, t_prgm *glob, int nb)
 			while (nb-- - 3)
 				push(current, other, 1);
 	}
-//	ft_putstr("\033[0m");
 }	

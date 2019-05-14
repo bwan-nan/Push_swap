@@ -6,7 +6,7 @@
 /*   By: bwan-nan <bwan-nan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/05/13 18:53:02 by bwan-nan          #+#    #+#             */
-/*   Updated: 2019/05/13 18:53:04 by bwan-nan         ###   ########.fr       */
+/*   Updated: 2019/05/14 15:24:18 by bwan-nan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ static int		check_duplicates(t_list *list)
 	t_list	*cpy;
 	t_list	*elem;
 
-	if (!(cpy = ft_lstcpy(list, copy_values)))
+	if (!(cpy = my_lstcpy(list, copy_values)))
 		return (0);
 	ft_lst_mergesort(&cpy, ascending_order);
 	elem = cpy;

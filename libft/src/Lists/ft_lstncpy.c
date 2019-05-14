@@ -6,13 +6,14 @@
 /*   By: bwan-nan <bwan-nan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/05/08 19:10:52 by bwan-nan          #+#    #+#             */
-/*   Updated: 2019/05/08 19:14:00 by bwan-nan         ###   ########.fr       */
+/*   Updated: 2019/05/14 16:28:38 by bwan-nan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-t_list			*ft_lstncpy(t_list *source, int size, int (*cpy)(void *, void *))
+t_list			*ft_lstncpy(t_list *source,
+				int size, int (*cpy)(void *, void *))
 {
 	t_list		*copy;
 	t_list		*node;

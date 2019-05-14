@@ -6,7 +6,7 @@
 /*   By: bwan-nan <bwan-nan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/02 01:19:38 by bwan-nan          #+#    #+#             */
-/*   Updated: 2019/05/13 18:41:41 by bwan-nan         ###   ########.fr       */
+/*   Updated: 2019/05/14 15:52:01 by bwan-nan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,14 +24,7 @@
 # define PUSHED			glob->pushed
 # define INIT_LEN		glob->initial_len
 # define UNSORTED		glob->unsorted
-# define OPA			glob->op_a
-# define SA				glob->sort_a
-# define OPB			glob->op_b
-# define SB				glob->sort_b
-# define SPLIT			glob->split
-# define OPS			glob->op_s
-# define TEN			glob->ten
-# define OPT			glob->op_t
+# define DISPLAY		glob->display
 
 # define STACK			current->stack_name
 
@@ -48,14 +41,7 @@ typedef struct			s_prgm
 	int					pushed;
 	int					initial_len;
 	int					unsorted;
-	int					op_a;
-	int					op_b;
-	int					op_s;
-	int					sort_a;
-	int					sort_b;
-	int					split;
-	int					ten;
-	int					op_t;
+	int					display;
 }						t_prgm;
 
 typedef struct			s_stack
@@ -66,6 +52,7 @@ typedef struct			s_stack
 }						t_stack;
 
 void					del_node(void *content, size_t size);
+void					clear_stacks(t_stack *a, t_stack *b);
 
 void					stacks_init(t_stack *a, t_stack *b, t_list *list);
 void					glob_init(t_stack *a, t_prgm *glob);
@@ -83,6 +70,8 @@ void					sort_top3(t_stack *current, t_stack *other, t_prgm *glob, int nb);
 void					print_list(t_list *list);
 void					print_stacks(t_list *a, t_list *b);
 
+t_list					*my_lstcpy(t_list *source, int (*cpy)(void *, void *));
+t_list					*my_lstncpy(t_list *source, int size, int (*cpy)(void *, void *));
 int						copy_values(void *dest, void *source);
 t_list					*get_sorted_copy(t_list *source, t_prgm *glob, int size);
 int						get_median_value(t_list *source);

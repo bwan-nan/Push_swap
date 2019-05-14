@@ -6,7 +6,7 @@
 /*   By: bwan-nan <bwan-nan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/05/06 13:59:30 by bwan-nan          #+#    #+#             */
-/*   Updated: 2019/05/10 19:04:29 by bwan-nan         ###   ########.fr       */
+/*   Updated: 2019/05/14 15:23:59 by bwan-nan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ t_list		*get_sorted_copy(t_list *source, t_prgm *glob, int size)
 {
 	t_list	*new_list;
 
-	if (!(new_list = ft_lstncpy(source, size, copy_values)))
+	if (!(new_list = my_lstncpy(source, size, copy_values)))
 		return (NULL);
 	ft_lst_mergesort(&new_list, ascending_order);
 	ft_lstrev(&new_list);

@@ -6,7 +6,7 @@
 /*   By: bwan-nan <bwan-nan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/08 17:24:50 by bwan-nan          #+#    #+#             */
-/*   Updated: 2019/03/01 22:52:18 by bwan-nan         ###   ########.fr       */
+/*   Updated: 2019/05/14 15:00:42 by bwan-nan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,16 +15,12 @@
 
 void	*ft_memcpy(void *dst, const void *src, size_t n)
 {
-	char				*str1;
-	const char			*str2;
-	unsigned int		i;
+	size_t	i;
 
 	i = 0;
-	str1 = (char *)dst;
-	str2 = (const char *)src;
 	while (i < n)
 	{
-		str1[i] = str2[i];
+		((char *)dst)[i] = ((char *)src)[i];
 		i++;
 	}
 	return (dst);

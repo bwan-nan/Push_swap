@@ -6,7 +6,7 @@
 /*   By: bwan-nan <bwan-nan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/05/13 17:19:37 by bwan-nan          #+#    #+#             */
-/*   Updated: 2019/05/13 18:46:24 by bwan-nan         ###   ########.fr       */
+/*   Updated: 2019/05/14 16:29:30 by bwan-nan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,10 +32,8 @@ int				ft_isinteger(char *str)
 		if ((value = atoi(tmp)) > 214748364)
 			return (0);
 		else if (value == 214748364)
-		{
 			if (str[ft_strlen(str) - 1] - 48 > (*str == '-' ? 8 : 7))
 				return (0);
-		}
 	}
 	if (tmp)
 		ft_strdel(&tmp);

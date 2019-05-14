@@ -6,7 +6,7 @@
 #    By: cempassi <cempassi@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/11/26 23:18:40 by cempassi          #+#    #+#              #
-#    Updated: 2019/05/13 19:35:57 by bwan-nan         ###   ########.fr        #
+#    Updated: 2019/05/14 15:32:16 by bwan-nan         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -60,6 +60,7 @@ SRCS += push_swap.c
 SRCS += glob.c
 SRCS += create_stacks.c
 SRCS += sort_list.c
+SRCS += copy_list.c
 SRCS += sort_top3.c
 SRCS += instructions.c
 SRCS += get_functions.c
@@ -70,6 +71,7 @@ SRCS += exec.c
 
 SRCS_CH += checker.c
 SRCS_CH += create_stacks.c
+SRCS_CH += copy_list.c
 SRCS_CH += get_functions.c
 SRCS_CH += glob.c
 SRCS_CH += exec.c
@@ -81,6 +83,7 @@ SRCS_PS += push_swap.c
 SRCS_PS += glob.c
 SRCS_PS += create_stacks.c
 SRCS_PS += sort_list.c
+SRCS_PS += copy_list.c
 SRCS_PS += sort_top3.c
 SRCS_PS += instructions.c
 SRCS_PS += get_functions.c
@@ -89,7 +92,9 @@ SRCS_PS += display.c
 
 ARG = 8 9 5 3 2 -1 6
 
-DSYM = $(PUSH_SWAP).dSYM
+DSYMP = $(PUSH_SWAP).dSYM
+DSYMC = $(CHECKER).dSYM
+DSYM = $(DSYMC) + $(DSYMP)
 
 OBJS = $(patsubst %.c, $(OPATH)%.o, $(SRCS))
 OBJS_CH = $(patsubst %.c, $(OPATH)%.o, $(SRCS_CH))

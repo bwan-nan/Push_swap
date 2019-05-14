@@ -6,7 +6,7 @@
 /*   By: bwan-nan <bwan-nan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/09 11:05:52 by bwan-nan          #+#    #+#             */
-/*   Updated: 2019/05/13 17:05:12 by bwan-nan         ###   ########.fr       */
+/*   Updated: 2019/05/14 15:49:05 by bwan-nan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,20 +47,18 @@ static int	unsorted_top(t_stack *current, t_prgm *glob, int nb)
 	if (STACK == 'A')
 		ft_lstrev(&head1);
 	sorted_copy = list_index(head1, current->len, nb);
-	head2 = ft_lstcpy(current->head, copy_values);
+	head2 = my_lstcpy(current->head, copy_values);
 	rev = list_index(head2, current->len, nb);
-	i = 0;
-	while (rev && sorted_copy && i < nb)
+	i = -1;
+	while (rev && sorted_copy && ++i < nb)
 	{
 		if (*(int *)rev->content != *(int *)sorted_copy->content)
 			break ;
-		i++;
 		sorted_copy = sorted_copy->next;
 		rev = rev->next;
 	}
 	ft_lstdel(&head1, del_node);
 	ft_lstdel(&head2, del_node);
-//	ft_printf("unsorted = %d\n", total - i);
 	return (nb - i);
 }
 
@@ -73,7 +71,6 @@ static int	split_list (t_stack *current, t_stack *other, t_prgm *glob, int nb)
 	int		test;
 	int		tmp;
 
-	SPLIT++;
 	tmp = current->len;
 	pushed = 0;
 	rotated = 0;
@@ -88,19 +85,12 @@ static int	split_list (t_stack *current, t_stack *other, t_prgm *glob, int nb)
 		|| (STACK == 'B' && ((nb + pushed) % 2 ? *(int *)VALUE > MEDIAN : *(int *)VALUE >= MEDIAN)))
 		{
 			push(current, other, 1);
-			OPS++;
 			pushed++;
 			nb--;
-			//ft_printf("nb = %d, limit = %d, pushed = %d, MEDIAN = %d\n", nb, limit, pushed, MEDIAN);
-	/*	if (STACK == 'A')
-			print_stacks(current->head, other->head);
-		else
-			print_stacks(other->head, current->head);*/
 		}
 		else
 		{
 			rotate(current, 1);
-			OPS++;
 			rotated++;
 		}
 	}
@@ -108,10 +98,7 @@ static int	split_list (t_stack *current, t_stack *other, t_prgm *glob, int nb)
 	|| (pushed + nb != tmp && STACK == 'B'))
 	{
 		while (rotated--)
-		{
 			reverse_rotate(current, 1);
-			OPS++;
-		}
 	}
 	ft_lstdel(&sorted_copy, del_node);
 	return (pushed);
@@ -122,31 +109,12 @@ void		custom_sort(t_stack *current, t_stack *other, t_prgm *glob, int nb)
 	int		pushed;
 
 	if (is_sorted(current, other, nb))
-	{
-	/*	ft_printf("sorted  = 1 :  STACK = %c, nb = %d\n", STACK, nb);
-		if (STACK == 'A')
-			print_stacks(current->head, other->head);
-		else
-			print_stacks(other->head, current->head);*/
-	}
+		return ;
 	else if ((UNSORTED = unsorted_top(current, glob, nb)) <= 3)
-	{
-	//	ft_printf("unsorted = %d,   STACK = %c, nb = %d\n", UNSORTED, STACK, nb);
-
 		sort_top3(current, other, glob, nb); 
-	/*	if (STACK == 'A')
-			print_stacks(current->head, other->head);
-		else
-			print_stacks(other->head, current->head);*/
-	}
 	else
 	{
-	//	ft_printf("SPLIT :   STACK = %c, nb = %d\n", STACK, nb);
 		pushed = split_list(current, other, glob, nb);
-	/*	if (STACK == 'A')
-			print_stacks(current->head, other->head);
-		else
-			print_stacks(other->head, current->head);*/
 		if (STACK == 'A')
 		{
 			custom_sort(current, other, glob, nb - pushed);

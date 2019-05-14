@@ -6,7 +6,7 @@
 /*   By: bwan-nan <bwan-nan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/05/07 20:33:14 by bwan-nan          #+#    #+#             */
-/*   Updated: 2019/05/13 18:40:36 by bwan-nan         ###   ########.fr       */
+/*   Updated: 2019/05/14 15:54:01 by bwan-nan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,14 +43,7 @@ void		glob_init(t_stack *a, t_prgm *glob)
 	VAL1 = 0;
 	VAL2 = 0;
 	VAL3 = 0;
-	OPA = 0;
-	OPB = 0;
-	SA = 0;
-	SB = 0;
-	SPLIT = 0;
-	OPS = 0;
-	TEN = 0;
-	OPT = 0;
+	DISPLAY = 0;
 	INIT_LEN = a->len;
 }
 

@@ -6,7 +6,7 @@
 /*   By: bwan-nan <bwan-nan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/15 15:16:07 by bwan-nan          #+#    #+#             */
-/*   Updated: 2019/03/01 22:52:18 by bwan-nan         ###   ########.fr       */
+/*   Updated: 2019/05/14 14:20:09 by bwan-nan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,10 +15,10 @@
 
 void	*ft_memalloc(size_t size)
 {
-	char *str;
+	void	*ptr;
 
-	if (!(str = (void *)malloc(sizeof(void) * size)))
+	if (!(ptr = malloc(size)))
 		return (NULL);
-	ft_bzero(str, size);
-	return (str);
+	ft_memset(ptr, 0, size);
+	return (ptr);
 }
