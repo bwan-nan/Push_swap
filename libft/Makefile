@@ -6,7 +6,7 @@
 #    By: bwan-nan <bwan-nan@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/11/07 17:52:27 by bwan-nan          #+#    #+#              #
-#    Updated: 2019/05/13 19:35:43 by bwan-nan         ###   ########.fr        #
+#    Updated: 2019/05/17 18:45:20 by bwan-nan         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -131,7 +131,7 @@ SRC += get_bits.c
 
 # --------------------------------------- Lists ---------------------------------------#
 SRC += ft_lstnew.c
-SRC += ft_lstadd.c
+SRC += ft_lstprepend.c
 SRC += ft_lstappend.c
 SRC += ft_lstclr.c
 SRC += ft_lstdel.c

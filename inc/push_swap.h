@@ -6,7 +6,7 @@
 /*   By: bwan-nan <bwan-nan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/02 01:19:38 by bwan-nan          #+#    #+#             */
-/*   Updated: 2019/05/14 15:52:01 by bwan-nan         ###   ########.fr       */
+/*   Updated: 2019/05/17 20:04:03 by bwan-nan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,8 @@
 # define INIT_LEN		glob->initial_len
 # define UNSORTED		glob->unsorted
 # define DISPLAY		glob->display
+# define PUSHED			glob->pushed
+# define ROTATED		glob->rotated
 
 # define STACK			current->stack_name
 
@@ -38,10 +40,11 @@ typedef struct			s_prgm
 	int					val1;
 	int					val2;
 	int					val3;
-	int					pushed;
 	int					initial_len;
 	int					unsorted;
 	int					display;
+	int					pushed;
+	int					rotated;
 }						t_prgm;
 
 typedef struct			s_stack
@@ -58,22 +61,30 @@ void					stacks_init(t_stack *a, t_stack *b, t_list *list);
 void					glob_init(t_stack *a, t_prgm *glob);
 void					update_glob(t_stack *current, t_prgm *glob, int nb);
 
-
-int						create_stacks(t_stack *a, t_stack *b, int ac, char **av);	
+int						create_stacks(t_stack *a, t_stack *b,
+						int ac, char **av);
 
 void					sort_list(t_list **source);
-void					custom_sort(t_stack *a, t_stack *b, t_prgm *glob, int nb);
+void					custom_sort(t_stack *a, t_stack *b,
+						t_prgm *glob, int nb);
+int						split_list(t_stack *current, t_stack *other,
+						t_prgm *glob, int nb);
 int						ascending_order(void *a, void *b);
 int						descending_order(void *a, void *b);
-void					sort_top3(t_stack *current, t_stack *other, t_prgm *glob, int nb);
+void					sort_top3(t_stack *current, t_stack *other,
+						t_prgm *glob, int nb);
+void					sort_a(t_stack *a, t_stack *b, t_prgm *glob);
+void					sort_b(t_stack *a, t_stack *b, t_prgm *glob);
 
 void					print_list(t_list *list);
 void					print_stacks(t_list *a, t_list *b);
 
 t_list					*my_lstcpy(t_list *source, int (*cpy)(void *, void *));
-t_list					*my_lstncpy(t_list *source, int size, int (*cpy)(void *, void *));
+t_list					*my_lstncpy(t_list *source, int size,
+						int (*cpy)(void *, void *));
 int						copy_values(void *dest, void *source);
-t_list					*get_sorted_copy(t_list *source, t_prgm *glob, int size);
+t_list					*get_sorted_copy(t_list *source,
+						t_prgm *glob, int size);
 int						get_median_value(t_list *source);
 int						get_list_max(t_list *source, int size);
 int						get_list_min(t_list *source, int size);

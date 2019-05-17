@@ -6,7 +6,7 @@
 /*   By: bwan-nan <bwan-nan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/09 11:05:52 by bwan-nan          #+#    #+#             */
-/*   Updated: 2019/05/14 20:13:51 by bwan-nan         ###   ########.fr       */
+/*   Updated: 2019/05/17 19:11:38 by bwan-nan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ static int	is_sorted(t_stack *current, t_stack *other, int nb)
 	return (0);
 }
 
-t_list		*list_index(t_list	*list, int len, int nb)
+t_list		*list_index(t_list *list, int len, int nb)
 {
 	int		index;
 
@@ -62,45 +62,6 @@ static int	unsorted_top(t_stack *current, t_prgm *glob, int nb)
 	return (nb - i);
 }
 
-static int	split_list (t_stack *current, t_stack *other, t_prgm *glob, int nb)
-{
-	t_list	*sorted_copy;
-	int		pushed;
-	int		rotated;
-	int		limit;
-	int		tmp;
-
-	tmp = current->len;
-	pushed = 0;
-	rotated = 0;
-	limit = nb % 2 ? nb / 2 + 1 : nb / 2;
-	sorted_copy = get_sorted_copy(current->head, glob, nb);
-	if (STACK == 'B')
-		ft_lstrev(&sorted_copy);
-	while (nb > limit)
-	{
-		if ((STACK == 'A' && *(int *)VALUE < MEDIAN)
-		|| (STACK == 'B' && ((nb + pushed) % 2 ? *(int *)VALUE > MEDIAN : *(int *)VALUE >= MEDIAN)))
-		{
-			push(current, other, 1);
-			pushed++;
-			nb--;
-		}
-		else
-		{
-			rotate(current, 1);
-			rotated++;
-		}
-	}
-	if (pushed + nb != tmp)
-	{
-		while (rotated--)
-			reverse_rotate(current, 1);
-	}
-	ft_lstdel(&sorted_copy, del_node);
-	return (pushed);
-}
-
 void		custom_sort(t_stack *current, t_stack *other, t_prgm *glob, int nb)
 {
 	int		pushed;
@@ -108,7 +69,7 @@ void		custom_sort(t_stack *current, t_stack *other, t_prgm *glob, int nb)
 	if (is_sorted(current, other, nb))
 		return ;
 	else if ((UNSORTED = unsorted_top(current, glob, nb)) <= 3)
-		sort_top3(current, other, glob, nb); 
+		sort_top3(current, other, glob, nb);
 	else
 	{
 		pushed = split_list(current, other, glob, nb);

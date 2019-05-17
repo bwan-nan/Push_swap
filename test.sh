@@ -2,9 +2,9 @@ if [ "$1" != "" ] ; then
 	total=$1
 	for ((i=1; i<=$total; i++))
 	do
-		ARG=`ruby -e "puts (1..500).to_a.shuffle.join(' ')"`
+		ARG=`ruby -e "puts (1..100).to_a.shuffle.join(' ')"`
 		op=`./push_swap $ARG | wc -l`
-		echo $op
+		printf 'Test %-5d: %5d\n' $i $op
 		sum=$((sum +op))
 	done
 	echo "Average = $((sum/total))"

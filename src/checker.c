@@ -6,7 +6,7 @@
 /*   By: bwan-nan <bwan-nan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/05/13 15:02:26 by bwan-nan          #+#    #+#             */
-/*   Updated: 2019/05/14 15:40:15 by bwan-nan         ###   ########.fr       */
+/*   Updated: 2019/05/17 15:27:40 by bwan-nan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ int		main(int ac, char **av)
 	t_stack		b;
 	char		*line;
 	int			ret;
-	
+
 	b.head = NULL;
 	if (!(create_stacks(&a, &b, ac, av)))
 		return (-1);

@@ -6,7 +6,7 @@
 /*   By: bwan-nan <bwan-nan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/05/07 20:33:14 by bwan-nan          #+#    #+#             */
-/*   Updated: 2019/05/14 15:54:01 by bwan-nan         ###   ########.fr       */
+/*   Updated: 2019/05/17 19:16:13 by bwan-nan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,8 +31,6 @@ void		update_glob(t_stack *current, t_prgm *glob, int nb)
 	VAL2 = *(int *)current->head->next->content;
 	if (nb >= 3)
 		VAL3 = *(int *)current->head->next->next->content;
-	//ft_printf("VAL1 = %d, VAL2 = %d, VAL3 =%d, MIN =%d, MAX = %d\n",
-	//		VAL1, VAL2, VAL3, MIN, MAX);
 }
 
 void		glob_init(t_stack *a, t_prgm *glob)
@@ -44,6 +42,7 @@ void		glob_init(t_stack *a, t_prgm *glob)
 	VAL2 = 0;
 	VAL3 = 0;
 	DISPLAY = 0;
+	PUSHED = 0;
+	ROTATED = 0;
 	INIT_LEN = a->len;
 }
-

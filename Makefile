@@ -6,7 +6,7 @@
 #    By: cempassi <cempassi@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/11/26 23:18:40 by cempassi          #+#    #+#              #
-#    Updated: 2019/05/14 15:32:16 by bwan-nan         ###   ########.fr        #
+#    Updated: 2019/05/17 19:22:18 by bwan-nan         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -60,9 +60,13 @@ SRCS += push_swap.c
 SRCS += glob.c
 SRCS += create_stacks.c
 SRCS += sort_list.c
+SRCS += split_list.c
 SRCS += copy_list.c
 SRCS += sort_top3.c
-SRCS += instructions.c
+SRCS += sort_a.c
+SRCS += sort_b.c
+SRCS += instructions1.c
+SRCS += instructions2.c
 SRCS += get_functions.c
 SRCS += aux.c
 SRCS += display.c
@@ -75,7 +79,8 @@ SRCS_CH += copy_list.c
 SRCS_CH += get_functions.c
 SRCS_CH += glob.c
 SRCS_CH += exec.c
-SRCS_CH += instructions.c
+SRCS_CH += instructions1.c
+SRCS_CH += instructions2.c
 SRCS_CH += aux.c
 SRCS_CH += display.c
 
@@ -83,9 +88,13 @@ SRCS_PS += push_swap.c
 SRCS_PS += glob.c
 SRCS_PS += create_stacks.c
 SRCS_PS += sort_list.c
+SRCS_PS += split_list.c
 SRCS_PS += copy_list.c
 SRCS_PS += sort_top3.c
-SRCS_PS += instructions.c
+SRCS_PS += sort_a.c
+SRCS_PS += sort_b.c
+SRCS_PS += instructions1.c
+SRCS_PS += instructions2.c
 SRCS_PS += get_functions.c
 SRCS_PS += aux.c
 SRCS_PS += display.c
