@@ -6,7 +6,7 @@
 #    By: cempassi <cempassi@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/11/26 23:18:40 by cempassi          #+#    #+#              #
-#    Updated: 2019/05/17 19:22:18 by bwan-nan         ###   ########.fr        #
+#    Updated: 2019/05/18 13:34:23 by bwan-nan         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -59,6 +59,7 @@ INCS += lists.h
 SRCS += push_swap.c
 SRCS += glob.c
 SRCS += create_stacks.c
+SRCS += create_list.c
 SRCS += sort_list.c
 SRCS += split_list.c
 SRCS += copy_list.c
@@ -75,6 +76,7 @@ SRCS += exec.c
 
 SRCS_CH += checker.c
 SRCS_CH += create_stacks.c
+SRCS_CH += create_list.c
 SRCS_CH += copy_list.c
 SRCS_CH += get_functions.c
 SRCS_CH += glob.c
@@ -87,6 +89,7 @@ SRCS_CH += display.c
 SRCS_PS += push_swap.c
 SRCS_PS += glob.c
 SRCS_PS += create_stacks.c
+SRCS_PS += create_list.c
 SRCS_PS += sort_list.c
 SRCS_PS += split_list.c
 SRCS_PS += copy_list.c

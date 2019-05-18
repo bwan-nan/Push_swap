@@ -6,13 +6,13 @@
 /*   By: bwan-nan <bwan-nan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/05/13 15:13:41 by bwan-nan          #+#    #+#             */
-/*   Updated: 2019/05/17 20:00:51 by bwan-nan         ###   ########.fr       */
+/*   Updated: 2019/05/18 14:31:10 by bwan-nan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-int			exec(t_stack *a, t_stack *b, char *line)
+int			exec(t_stack *a, t_stack *b, int display, char *line)
 {
 	if (ft_strequ(line, "sa") || ft_strequ(line, "sb"))
 		ft_strequ(line, "sa") ? swap(a, 0) : swap(b, 0);
@@ -30,5 +30,7 @@ int			exec(t_stack *a, t_stack *b, char *line)
 		ft_strequ(line, "pa") ? push(b, a, 0) : push(a, b, 0);
 	else
 		return (-1);
+	if (display)
+		print_stacks(a->head, b->head);
 	return (0);
 }

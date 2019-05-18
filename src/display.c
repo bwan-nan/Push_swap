@@ -6,7 +6,7 @@
 /*   By: bwan-nan <bwan-nan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/05/06 14:10:22 by bwan-nan          #+#    #+#             */
-/*   Updated: 2019/05/17 15:28:06 by bwan-nan         ###   ########.fr       */
+/*   Updated: 2019/05/18 14:02:24 by bwan-nan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,10 +14,10 @@
 
 void	print_stacks(t_list *a, t_list *b)
 {
-	ft_putendl("STACK A | STACK B\n------------------");
+	ft_printf("{yellow}STACK A | STACK B\n------------------\n{nc}");
 	while (a && b)
 	{
-		ft_printf("%4d%5c%4d\n",
+		ft_printf("%4d{yellow}%5c{nc}%4d\n",
 		*(int *)a->content, '|', *(int *)b->content);
 		a = a->next;
 		b = b->next;
@@ -26,7 +26,7 @@ void	print_stacks(t_list *a, t_list *b)
 	{
 		while (a)
 		{
-			ft_printf("%4d%5c\n", *(int *)a->content, '|');
+			ft_printf("%4d{yellow}%5c{nc}\n", *(int *)a->content, '|');
 			a = a->next;
 		}
 	}
@@ -34,7 +34,7 @@ void	print_stacks(t_list *a, t_list *b)
 	{
 		while (b)
 		{
-			ft_printf("%9c%4d\n", '|', *(int *)b->content);
+			ft_printf("{yellow}%9c{nc}%4d\n", '|', *(int *)b->content);
 			b = b->next;
 		}
 	}

@@ -6,7 +6,7 @@
 /*   By: bwan-nan <bwan-nan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/05/07 20:33:14 by bwan-nan          #+#    #+#             */
-/*   Updated: 2019/05/17 19:16:13 by bwan-nan         ###   ########.fr       */
+/*   Updated: 2019/05/18 13:38:44 by bwan-nan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,6 @@ void		glob_init(t_stack *a, t_prgm *glob)
 	VAL1 = 0;
 	VAL2 = 0;
 	VAL3 = 0;
-	DISPLAY = 0;
 	PUSHED = 0;
 	ROTATED = 0;
 	INIT_LEN = a->len;

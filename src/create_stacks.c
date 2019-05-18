@@ -6,7 +6,7 @@
 /*   By: bwan-nan <bwan-nan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/05/13 18:53:02 by bwan-nan          #+#    #+#             */
-/*   Updated: 2019/05/17 19:51:20 by bwan-nan         ###   ########.fr       */
+/*   Updated: 2019/05/18 14:26:06 by bwan-nan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,63 +34,34 @@ static int		check_duplicates(t_list *list)
 	return (0);
 }
 
-static int		get_word_len(char *str)
+static int		exit_error(t_list **list)
 {
-	int	i;
-
-	i = 0;
-	while (!(ft_iswhitespace(str[i])) && str[i])
-		i++;
-	return (i);
+	ft_lstdel(list, del_node);
+	ft_putendl("Error");
+	return (0);
 }
 
-static t_list	*ft_strsplit_tolist(t_list *list, char *str, int i, char *tmp)
+int				debug_mode(t_stack *a, t_stack *b, int ac, char **av)
 {
-	t_list		*node;
-	int			len;
-	int			value;
+	t_list	*list;
 
-	while (str[i])
+	list = NULL;
+	if (ac == 3)
 	{
-		len = get_word_len(str + i);
-		if (len && (tmp = ft_strsub(str, i, len)))
-		{
-			if (!ft_isinteger(tmp))
-			{
-				ft_strdel(&tmp);
-				return (error_exit(list));
-			}
-			value = ft_atoi(tmp);
-			if (!(node = ft_lstnew(&value, sizeof(int))))
-				return (error_exit(list));
-			ft_lstprepend(&list, node);
-			ft_strdel(&tmp);
-			i += len - 1;
-		}
-		i++;
+		if (!(list = ft_strsplit_tolist(list, av[2], 0, NULL)))
+			return (0);
 	}
-	return (list);
-}
-
-static t_list	*get_numbers_list(t_list *list, int ac, char **av, int num)
-{
-	t_list	*node;
-	int		i;
-
-	i = 0;
-	while (++i < ac)
+	else
 	{
-		if (!(ft_isinteger(av[i])))
-			return (error_exit(list));
-		else
-		{
-			num = ft_atoi(av[i]);
-			if (!(node = ft_lstnew(&num, sizeof(int))))
-				return (error_exit(list));
-			ft_lstprepend(&list, node);
-		}
+		if (!(list = get_numbers_list(list, ac, av, 1)))
+			return (0);
 	}
-	return (list);
+	if (check_duplicates(list))
+		return (exit_error(&list));
+	stacks_init(a, b, list);
+	ft_printf("{green}INITIALIZATION\n------------------{nc}\n");
+	print_stacks(a->head, b->head);
+	return (1);
 }
 
 int				create_stacks(t_stack *a, t_stack *b, int ac, char **av)
@@ -111,11 +82,7 @@ int				create_stacks(t_stack *a, t_stack *b, int ac, char **av)
 	else
 		return (0);
 	if (check_duplicates(list))
-	{
-		ft_lstdel(&list, del_node);
-		ft_putendl("Error");
-		return (0);
-	}
+		return (exit_error(&list));
 	stacks_init(a, b, list);
 	return (1);
 }

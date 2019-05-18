@@ -6,7 +6,7 @@
 /*   By: bwan-nan <bwan-nan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/02 01:19:38 by bwan-nan          #+#    #+#             */
-/*   Updated: 2019/05/17 20:04:03 by bwan-nan         ###   ########.fr       */
+/*   Updated: 2019/05/18 13:40:21 by bwan-nan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,6 @@ typedef struct			s_prgm
 	int					val3;
 	int					initial_len;
 	int					unsorted;
-	int					display;
 	int					pushed;
 	int					rotated;
 }						t_prgm;
@@ -71,6 +70,7 @@ int						split_list(t_stack *current, t_stack *other,
 						t_prgm *glob, int nb);
 int						ascending_order(void *a, void *b);
 int						descending_order(void *a, void *b);
+
 void					sort_top3(t_stack *current, t_stack *other,
 						t_prgm *glob, int nb);
 void					sort_a(t_stack *a, t_stack *b, t_prgm *glob);
@@ -83,11 +83,16 @@ t_list					*my_lstcpy(t_list *source, int (*cpy)(void *, void *));
 t_list					*my_lstncpy(t_list *source, int size,
 						int (*cpy)(void *, void *));
 int						copy_values(void *dest, void *source);
+
 t_list					*get_sorted_copy(t_list *source,
 						t_prgm *glob, int size);
 int						get_median_value(t_list *source);
 int						get_list_max(t_list *source, int size);
 int						get_list_min(t_list *source, int size);
+t_list					*get_numbers_list(t_list *list, int ac,
+						char **av, int num);
+t_list					*ft_strsplit_tolist(t_list *list, char *str,
+						int i, char *tmp);
 
 t_list					*error_exit(t_list *list);
 
@@ -99,6 +104,7 @@ void					rrotate(t_stack *a, t_stack *b, int verbose);
 void					reverse_rotate(t_stack *current, int verbose);
 void					rreverse_rotate(t_stack *a, t_stack *b, int verbose);
 
-int						exec(t_stack *a, t_stack *b, char *line);
+int						exec(t_stack *a, t_stack *b, int display, char *line);
+int						debug_mode(t_stack *a, t_stack *b, int ac, char **av);
 
 #endif
