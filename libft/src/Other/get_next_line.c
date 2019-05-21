@@ -6,7 +6,7 @@
 /*   By: bwan-nan <bwan-nan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/21 11:56:09 by bwan-nan          #+#    #+#             */
-/*   Updated: 2019/01/08 00:26:47 by bwan-nan         ###   ########.fr       */
+/*   Updated: 2019/05/21 12:18:02 by bwan-nan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,19 +31,19 @@ static int		update_line(t_lst *elem, char **line)
 		elem->str = ft_strdup(ft_strchr(elem->str, '\n') + 1);
 	else
 		elem->str = ft_strnew(0);
-	free(tmp);
+	ft_strdel(&tmp);
 	return (1);
 }
 
-static t_lst	*ft_lstcreate(const int fd, t_lst **list)
+static t_lst	*ft_lstcreate(const int fd, t_lst *list)
 {
 	t_lst *tmp;
 
-	if (!(tmp = (t_lst *)malloc(sizeof(t_lst))))
+	if (!(tmp = malloc(sizeof(t_lst))))
 		return (NULL);
 	tmp->fd = fd;
 	tmp->str = NULL;
-	tmp->next = *list;
+	tmp->next = list;
 	return (tmp);
 }
 
@@ -58,7 +58,7 @@ static void		update_str(const int fd, char **str)
 		buffer[ret] = '\0';
 		tmp = *str;
 		*str = ft_strjoin(*str, buffer);
-		free(tmp);
+		ft_strdel(&tmp);
 		if (ft_strchr(*str, '\n'))
 			break ;
 	}
@@ -80,7 +80,7 @@ int				get_next_line(const int fd, char **line)
 	}
 	if (elem == NULL)
 	{
-		if (!(elem = ft_lstcreate(fd, &list)))
+		if (!(elem = ft_lstcreate(fd, list)))
 			return (-1);
 		list = elem;
 	}
