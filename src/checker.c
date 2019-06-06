@@ -6,7 +6,7 @@
 /*   By: bwan-nan <bwan-nan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/05/13 15:02:26 by bwan-nan          #+#    #+#             */
-/*   Updated: 2019/05/21 12:18:58 by bwan-nan         ###   ########.fr       */
+/*   Updated: 2019/06/06 20:36:09 by bwan-nan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,6 +34,7 @@ int				main(int ac, char **av)
 	{
 		if (!(display = debug_mode(&a, &b, ac, av)))
 			return (-1);
+		display = isatty(0) ? 0 : display;
 	}
 	else if (!(create_stacks(&a, &b, ac, av)))
 		return (-1);
