@@ -6,7 +6,7 @@
 /*   By: bwan-nan <bwan-nan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2display19/display5/13 15:13:41 by bwan-nan          #+#    #+#             */
-/*   Updated: 2019/06/06 20:34:48 by bwan-nan         ###   ########.fr       */
+/*   Updated: 2019/06/06 20:40:47 by bwan-nan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,5 +31,5 @@ int			exec(t_stack *a, t_stack *b, int display, char *line)
 	else
 		return (-1);
 	print_stacks(a->head, b->head);
-	return (display);
+	return (0);
 }
