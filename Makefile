@@ -6,7 +6,7 @@
 #    By: bwan-nan <bwan-nan@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/06/06 20:37:34 by bwan-nan          #+#    #+#              #
-#    Updated: 2019/06/06 20:37:36 by bwan-nan         ###   ########.fr        #
+#    Updated: 2019/06/26 11:49:20 by bwan-nan         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -112,7 +112,13 @@ OBJS = $(patsubst %.c, $(OPATH)%.o, $(SRCS))
 OBJS_CH = $(patsubst %.c, $(OPATH)%.o, $(SRCS_CH))
 OBJS_PS = $(patsubst %.c, $(OPATH)%.o, $(SRCS_PS))
 
-vpath  %.c src/
+vpath  %.c src/tools/
+vpath  %.c src/tools/instructions
+vpath  %.c src/checker/
+vpath  %.c src/push_swap/
+vpath  %.c src/push_swap/init
+vpath  %.c src/push_swap/sort
+vpath  %.c src/push_swap/tools
 vpath  %.h inc/
 vpath  %.h libft/inc/
 

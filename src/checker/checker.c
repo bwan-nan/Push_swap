@@ -6,7 +6,7 @@
 /*   By: bwan-nan <bwan-nan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/05/13 15:02:26 by bwan-nan          #+#    #+#             */
-/*   Updated: 2019/06/06 20:36:09 by bwan-nan         ###   ########.fr       */
+/*   Updated: 2019/06/26 12:03:41 by bwan-nan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,9 +32,10 @@ int				main(int ac, char **av)
 	display = 0;
 	if (ac >= 3 && ft_strequ(av[1], "-v"))
 	{
-		if (!(display = debug_mode(&a, &b, ac, av)))
+		ft_putendl("hello");
+		display = isatty(0) ? 0 : 1;
+		if (!display || !debug_mode(&a, &b, ac, av))
 			return (-1);
-		display = isatty(0) ? 0 : display;
 	}
 	else if (!(create_stacks(&a, &b, ac, av)))
 		return (-1);
