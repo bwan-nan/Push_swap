@@ -6,7 +6,7 @@
 /*   By: bwan-nan <bwan-nan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2display19/display5/13 15:13:41 by bwan-nan          #+#    #+#             */
-/*   Updated: 2019/06/26 12:05:47 by bwan-nan         ###   ########.fr       */
+/*   Updated: 2019/07/03 23:32:52 by bwan-nan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ int			exec(t_stack *a, t_stack *b, int display, char *line)
 		ft_strequ(line, "pa") ? push(b, a, display) : push(a, b, display);
 	else
 		return (-1);
-	if (display)
+	if (display || isatty(0))
 		print_stacks(a->head, b->head);
 	return (0);
 }
