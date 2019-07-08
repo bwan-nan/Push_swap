@@ -41,7 +41,7 @@ the last one.
 
 ## Tests
 For instance, run this command to test the number of instructions needed by the program to sort a stack of 500 numbers.
-    ARG=`ruby -e "puts (0..499).to_a.shuffle.join(' ')"`; ./push_swap $ARG | wc -l
+```ARG=`ruby -e "puts (0..499).to_a.shuffle.join(' ')"`; ./push_swap $ARG | wc -l```
 
 
 **For more information, please read the PDF.**
