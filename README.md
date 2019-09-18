@@ -41,7 +41,21 @@ the last one.
 
 ## Tests
 For instance, run this command to test the number of instructions needed by the program to sort a stack of 500 numbers.
-```ARG=`ruby -e "puts (0..499).to_a.shuffle.join(' ')"`; ./push_swap $ARG | wc -l```
+```ARG=`ruby -e "puts (0..499).to_a.shuffle.join(' ')"`; ./push_swap $ARG | wc -l``` </br>
+
+I ran 100 tests (see test.sh) on different stack sizes with my sorting algorithm.</br>
+**Here are the performance results:**
+
+
+ Number of values    |      Average number of<br/>instructions needed |
+ :-----------------: | :------------------------:  |
+3	                  |    1	 	               |
+5	                  |    7	 	               |
+ 10                  |    25	 	               |
+ 100	              |    691	 	               |
+500	              |    5,191	 	               |
+ 1,000	              |    11,874	 	           |
+ 5,000	              |    76,739	 	           |
 
 
 **For more information, please read the PDF.**
